@@ -50,13 +50,6 @@
   transition: background-color 0.2s ease;
 }
 
-.linkItem:hover {
-  background-color: #f0f0f0;
-}
-.linkItem:active {
-  background-color: #e0e0e0;
-}
-
 /* Icon styling */
 .icon {
   object-fit: contain;

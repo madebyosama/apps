@@ -55,6 +55,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-nunito);
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .button:focus {

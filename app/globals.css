@@ -14,3 +14,10 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  --cursor-default: url('/images/cursors/arrow-cursor.svg'), auto !important;
+  --cursor-pointer: url('/images/cursors/pointer-cursor.svg'), auto !important;
+  --cursor-text: url('/images/cursors/text-cursor.svg'), auto !important;
+  cursor: var(--cursor-default);
+}
