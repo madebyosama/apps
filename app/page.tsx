@@ -1,95 +1,84 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { useState, useEffect, Suspense, lazy } from 'react';
+import styles from './page.module.css';
+
+// Lazy load each app page
+const Notes = lazy(() => import('./notes/page'));
+const Calculator = lazy(() => import('./calculator/page'));
+const Books = lazy(() => import('./books/page'));
+const Music = lazy(() => import('./music/page'));
+const Podcasts = lazy(() => import('./podcasts/page'));
+const Clock = lazy(() => import('./clock/page'));
+const Bookmarks = lazy(() => import('./bookmarks/page'));
+
+// Map app names to components
+const apps: Record<string, React.ComponentType> = {
+  Notes,
+  Calculator,
+  Books,
+  Music,
+  Podcasts,
+  Clock,
+  Bookmarks,
+};
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [selectedApp, setSelectedApp] = useState<string | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  // Load from storage once on mount
+  useEffect(() => {
+    const savedApp = localStorage.getItem('selectedApp');
+    if (savedApp && apps[savedApp]) {
+      setSelectedApp(savedApp);
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Save to storage when selection changes
+  useEffect(() => {
+    if (selectedApp) {
+      localStorage.setItem('selectedApp', selectedApp);
+    }
+  }, [selectedApp]);
+
+  if (!isLoaded) return null;
+
+  // If app is selected, render it with Back button
+  if (selectedApp) {
+    const AppComponent = apps[selectedApp];
+    return (
+      <div className={styles.appContainer}>
+        <div className={styles.appHeader}>
+          <button
+            onClick={() => {
+              localStorage.removeItem('selectedApp');
+              setSelectedApp(null);
+            }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+            ⬅ Back to Home
+          </button>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <Suspense fallback={<div>Loading {selectedApp}...</div>}>
+          <AppComponent />
+        </Suspense>
+      </div>
+    );
+  }
+
+  // Main home page
+  return (
+    <div className={styles.container}>
+      <h1>Welcome to the App</h1>
+      <p>Please select an app to continue:</p>
+      <div className={styles.buttonGroup}>
+        {Object.keys(apps).map((appName) => (
+          <button key={appName} onClick={() => setSelectedApp(appName)}>
+            {appName}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
