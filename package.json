@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "22.x"
+    "node": "22.x",
+    "npm": "10.9.3"
   },
-  "packageManager": "npm@10.9.3",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
