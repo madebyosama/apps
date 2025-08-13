@@ -1,5 +1,4 @@
 .page {
-  padding: 2rem;
   font-family: var(--font-nunito), sans-serif;
   align-items: center;
   background-color: #f4f4f4;
@@ -62,11 +61,6 @@
 /* Icon styling */
 .icon {
   object-fit: contain;
-}
-
-/* Back button + app container */
-.appContainer {
-  padding: 1rem;
 }
 
 .appHeader {
