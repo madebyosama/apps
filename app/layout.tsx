@@ -8,7 +8,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: 'webOS',
+  title: 'Apps',
   description: 'A modern operating system built with Next.js and TypeScript',
 };
 
@@ -33,7 +33,7 @@ export default function RootLayout({
           sizes='180x180'
           href='/apple-touch-icon.png'
         />
-        <meta name='apple-mobile-web-app-title' content='Notes' />
+        <meta name='apple-mobile-web-app-title' content='Apps' />
         <link rel='manifest' href='/site.webmanifest' />
         <meta name='robots' content='noindex, nofollow' />
       </head>
