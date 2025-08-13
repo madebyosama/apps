@@ -12,20 +12,24 @@ const Podcasts = lazy(() => import('./podcasts/page'));
 const Clock = lazy(() => import('./clock/page'));
 const Bookmarks = lazy(() => import('./bookmarks/page'));
 
-// Map app names to components
-const apps: Record<string, React.ComponentType> = {
-  Notes,
-  Calculator,
-  Books,
-  Music,
-  Podcasts,
-  Clock,
-  Bookmarks,
+// Map app names to components + icons
+const apps: Record<string, { component: React.ComponentType; icon: string }> = {
+  Notes: { component: Notes, icon: '/images/icons/apps/notes.svg' },
+  Calculator: {
+    component: Calculator,
+    icon: '/images/icons/apps/calculator.svg',
+  },
+  Books: { component: Books, icon: '/books.svg' },
+  Music: { component: Music, icon: '/music.svg' },
+  Podcasts: { component: Podcasts, icon: '/podcasts.svg' },
+  Clock: { component: Clock, icon: '/clock.svg' },
+  Bookmarks: { component: Bookmarks, icon: '/bookmarks.svg' },
 };
 
 export default function Home() {
   const [selectedApp, setSelectedApp] = useState<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [query, setQuery] = useState('');
 
   // Load from storage once on mount
   useEffect(() => {
@@ -47,7 +51,7 @@ export default function Home() {
 
   // If app is selected, render it with Back button
   if (selectedApp) {
-    const AppComponent = apps[selectedApp];
+    const AppComponent = apps[selectedApp].component;
     return (
       <div className={styles.appContainer}>
         <div className={styles.appHeader}>
@@ -67,16 +71,39 @@ export default function Home() {
     );
   }
 
-  // Main home page
+  // Filter apps by search query
+  const filteredApps = Object.keys(apps).filter((appName) =>
+    appName.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
-    <div className={styles.container}>
-      <h1>Welcome to the App</h1>
-      <p>Please select an app to continue:</p>
-      <div className={styles.buttonGroup}>
-        {Object.keys(apps).map((appName) => (
-          <button key={appName} onClick={() => setSelectedApp(appName)}>
-            {appName}
-          </button>
+    <div className={styles.page}>
+      {/* Search bar */}
+      <input
+        type='text'
+        placeholder='Search apps...'
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        className={styles.searchInput}
+      />
+
+      {/* App grid */}
+      <div className={styles.links}>
+        {filteredApps.map((appName) => (
+          <div
+            key={appName}
+            className={styles.linkItem}
+            onClick={() => setSelectedApp(appName)}
+          >
+            <img
+              src={apps[appName].icon}
+              alt={`${appName} icon`}
+              width={48}
+              height={48}
+              className={styles.icon}
+            />
+            <p>{appName}</p>
+          </div>
         ))}
       </div>
     </div>
