@@ -19,11 +19,11 @@ const apps: Record<string, { component: React.ComponentType; icon: string }> = {
     component: Calculator,
     icon: '/images/icons/apps/calculator.svg',
   },
-  Books: { component: Books, icon: '/books.svg' },
-  Music: { component: Music, icon: '/music.svg' },
-  Podcasts: { component: Podcasts, icon: '/podcasts.svg' },
-  Clock: { component: Clock, icon: '/clock.svg' },
-  Bookmarks: { component: Bookmarks, icon: '/bookmarks.svg' },
+  Books: { component: Books, icon: '/images/icons/apps/books.svg' },
+  Music: { component: Music, icon: '/images/icons/apps/music.svg' },
+  Podcasts: { component: Podcasts, icon: '/images/icons/apps/podcasts.svg' },
+  Clock: { component: Clock, icon: '/images/icons/apps/clock.svg' },
+  Bookmarks: { component: Bookmarks, icon: '/images/icons/apps/bookmarks.svg' },
 };
 
 export default function Home() {
