@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense, lazy } from 'react';
+import { useState, useEffect, lazy } from 'react';
 import styles from './page.module.css';
 
 // Lazy load each app page
