@@ -71,40 +71,29 @@ export default function Home() {
     );
   }
 
-  // Filter apps by search query
-  const filteredApps = Object.keys(apps).filter((appName) =>
-    appName.toLowerCase().includes(query.toLowerCase())
-  );
-
   return (
     <div className={styles.page}>
-      {/* Search bar */}
-      <input
-        type='text'
-        placeholder='Search apps...'
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className={styles.searchInput}
-      />
-
-      {/* App grid */}
-      <div className={styles.links}>
-        {filteredApps.map((appName) => (
-          <div
-            key={appName}
-            className={styles.linkItem}
-            onClick={() => setSelectedApp(appName)}
-          >
-            <img
-              src={apps[appName].icon}
-              alt={`${appName} icon`}
-              width={48}
-              height={48}
-              className={styles.icon}
-            />
-            <p>{appName}</p>
-          </div>
-        ))}
+      <div className={styles.apps}>
+        {Object.keys(apps)
+          .filter((appName) =>
+            appName.toLowerCase().includes(query.toLowerCase())
+          )
+          .map((appName) => (
+            <div
+              key={appName}
+              className={styles.app}
+              onClick={() => setSelectedApp(appName)}
+            >
+              <img
+                src={apps[appName].icon}
+                alt={`${appName} icon`}
+                width={48}
+                height={48}
+                className={styles.icon}
+              />
+              <p>{appName}</p>
+            </div>
+          ))}
       </div>
     </div>
   );

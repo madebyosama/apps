@@ -3,32 +3,13 @@
   align-items: center;
   background-color: #f4f4f4;
   min-height: 100vh;
-}
-
-/* Search bar */
-.searchInput {
-  width: 100%;
-  max-width: 400px;
-  padding: 0.75rem 1rem;
-  margin: 0 auto 2rem auto;
-  display: block;
-  font-size: 1rem;
-  font-family: var(--font-nunito), sans-serif;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  background-color: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: border 0.2s, box-shadow 0.2s;
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: #999;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Grid layout */
-.links {
+.apps {
   display: grid;
   grid-template-columns: repeat(auto-fit, 150px);
   gap: 1rem;
@@ -38,7 +19,7 @@
 }
 
 /* Card item */
-.linkItem {
+.app {
   cursor: var(--cursor-pointer, pointer);
   display: flex;
   flex-direction: column;
@@ -46,15 +27,15 @@
   gap: 0.75rem;
   padding: 32px 32px 24px 32px;
   border-radius: 8px;
-  background-color: white;
+
   max-width: 150px;
   transition: background-color 0.2s ease;
 }
 
-.linkItem:hover {
+.app:hover {
   background-color: #f0f0f0;
 }
-.linkItem:active {
+.app:active {
   background-color: #e0e0e0;
 }
 
@@ -83,7 +64,7 @@
   .page {
     height: auto;
   }
-  .links {
+  .apps {
     grid-template-columns: repeat(2, 1fr);
   }
   .searchInput {

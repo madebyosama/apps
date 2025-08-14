@@ -1,0 +1,84 @@
+.container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  font-family: var(--font-nunito);
+}
+
+.inputSection {
+  margin-bottom: 20px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 16px 16px;
+  min-height: 80px;
+  font-family: var(--font-nunito);
+  font-size: 16px;
+  background-color: #f9f9f9;
+  border: none;
+  border-radius: 12px;
+
+  resize: vertical;
+}
+
+.textarea:focus {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.editTextarea {
+  width: 100%;
+  padding: 12px 12px;
+  min-height: 60px;
+  background-color: #f9f9f9;
+  font-family: var(--font-nunito);
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  resize: vertical;
+}
+
+.notesList {
+  list-style: none;
+  padding: 0;
+}
+
+.noteItem {
+  background-color: cornsilk;
+  padding: 16px 32px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  position: relative;
+  font-family: var(--font-nunito);
+  font-size: 16px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+}
+
+.copyButton {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: #888;
+  padding: 2px;
+}
+
+.noteContent {
+  margin: 0;
+  cursor: pointer;
+  white-space: pre-wrap;
+}
