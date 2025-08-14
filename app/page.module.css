@@ -74,8 +74,4 @@
   font-size: 24px;
   text-transform: uppercase;
   font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.4); /* semi-transparent to see blur */
-  backdrop-filter: blur(10px); /* blurs the background only */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: none;
 }

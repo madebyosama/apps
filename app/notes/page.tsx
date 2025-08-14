@@ -181,22 +181,30 @@ export default function NotesPage() {
       <ul className={styles.notesList}>
         {notes.map((note) => (
           <li key={note.id} className={styles.noteItem}>
-            <button
+            <div
               onClick={() => deleteNote(note.id)}
               className={styles.deleteButton}
             >
-              ×
-            </button>
+              <img
+                src='/images/icons/general/delete.svg'
+                alt='Delete note'
+                className={styles.deleteIcon}
+              />
+            </div>
 
-            <button
+            <div
               onClick={(e) => {
                 e.stopPropagation();
                 copyNote(note.content);
               }}
               className={styles.copyButton}
             >
-              c
-            </button>
+              <img
+                src='/images/icons/general/copy.svg'
+                alt='Copy note'
+                className={styles.copyIcon}
+              />
+            </div>
 
             {editingId === note.id ? (
               <textarea
