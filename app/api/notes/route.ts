@@ -20,7 +20,7 @@ export async function GET() {
     return NextResponse.json(JSON.parse(data));
   } catch (error) {
     return NextResponse.json(
-      { error: 'Failed to read notes' },
+      { error: `${error} 'Failed to read note'` },
       { status: 500 }
     );
   }
@@ -46,6 +46,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newNote);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to save note' }, { status: 500 });
+    return NextResponse.json(
+      { error: `${error} 'Failed to save note'` },
+      { status: 500 }
+    );
   }
 }
