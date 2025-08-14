@@ -29,7 +29,6 @@ const apps: Record<string, { component: React.ComponentType; icon: string }> = {
 export default function Home() {
   const [selectedApp, setSelectedApp] = useState<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [query, setQuery] = useState('');
 
   // Load from storage once on mount
   useEffect(() => {
@@ -75,9 +74,7 @@ export default function Home() {
     <div className={styles.page}>
       <div className={styles.apps}>
         {Object.keys(apps)
-          .filter((appName) =>
-            appName.toLowerCase().includes(query.toLowerCase())
-          )
+          .filter((appName) => appName.toLowerCase())
           .map((appName) => (
             <div
               key={appName}
