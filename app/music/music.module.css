@@ -1,0 +1,43 @@
+/* styles/page.module.css */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.song {
+  overflow: hidden;
+  background-color: #f1f3f4;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 16px;
+}
+
+.songTitle {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3;
+  margin-bottom: 4px;
+}
+
+.songSinger {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.song img {
+  width: 100px;
+  height: 100px;
+  margin-right: 21px;
+}
+
+.song div {
+  display: flex;
+  flex-direction: column;
+}
+
+.audio {
+  margin-left: -21px;
+}
