@@ -13,33 +13,13 @@ interface Song {
 
 export default function Home() {
   const [songs, setSongs] = useState<Song[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(
-          'https://opensheet.elk.sh/1oSDi5i4mwb3M4jDVazuvQDmjSQxNhsAfggNhNTh1kQ4/1'
-        );
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data: Song[] = await response.json();
-        setSongs(data);
-        console.log(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false); // Set loading to false once the fetch is complete
-      }
-    }
-
-    fetchData();
+    fetch('/data/music.json')
+      .then((res) => res.json())
+      .then((data: Song[]) => setSongs(data))
+      .catch((err) => console.error('Error loading music:', err));
   }, []);
-
-  if (loading) {
-    return <div className={styles.loading}>Loading...</div>;
-  }
 
   return (
     <div className={styles.main}>

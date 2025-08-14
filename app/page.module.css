@@ -44,22 +44,6 @@
   object-fit: contain;
 }
 
-.appHeader {
-  margin-bottom: 1rem;
-}
-
-.appHeader button {
-  background: none;
-  border: none;
-  color: #0070f3;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.appHeader button:hover {
-  text-decoration: underline;
-}
-
 @media (max-width: 1200px) {
   .page {
     height: auto;
@@ -70,4 +54,28 @@
   .searchInput {
     max-width: 80%;
   }
+}
+
+.appNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  bottom: 0px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.homeButton {
+  cursor: var(--cursor-pointer, pointer);
+  font-family: var(--font-nunito), sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.4); /* semi-transparent to see blur */
+  backdrop-filter: blur(10px); /* blurs the background only */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: none;
 }

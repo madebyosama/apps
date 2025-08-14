@@ -53,19 +53,22 @@ export default function Home() {
     const AppComponent = apps[selectedApp].component;
     return (
       <div className={styles.appContainer}>
-        <div className={styles.appHeader}>
-          <button
-            onClick={() => {
-              localStorage.removeItem('selectedApp');
-              setSelectedApp(null);
-            }}
-          >
-            ⬅ Back to Home
-          </button>
+        <div className={styles.appNavigation}>
+          <div className={styles.homeButton}>
+            <img
+              src='/images/icons/general/home.svg'
+              alt='Home icon'
+              width={24}
+              height={24}
+              onClick={() => {
+                localStorage.removeItem('selectedApp');
+                setSelectedApp(null);
+              }}
+            />
+          </div>
         </div>
-        <Suspense fallback={<div>Loading {selectedApp}...</div>}>
-          <AppComponent />
-        </Suspense>
+
+        <AppComponent />
       </div>
     );
   }
