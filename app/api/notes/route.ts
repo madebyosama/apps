@@ -10,6 +10,11 @@ function getFilePath() {
   return isProd ? prodFilePath : devFilePath;
 }
 
+type Note = {
+  id: number;
+  text: string;
+};
+
 export async function GET() {
   try {
     const filePath = getFilePath();
@@ -31,7 +36,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const filePath = getFilePath();
 
-    let notes: any[] = [];
+    let notes: Note[] = [];
     if (fs.existsSync(filePath)) {
       notes = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     }
